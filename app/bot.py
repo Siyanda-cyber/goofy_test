@@ -1,4 +1,3 @@
-from email import message
 from flask import Flask, request, render_template, jsonify
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
@@ -112,22 +111,22 @@ def home():
 # =====================
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.json
+    data = request.get_json(silent=True) or {}
     message = data.get("message", "").strip().lower()
-    goofy_init = data.get("event")
-
-    if message == "hi":
-        return jsonify({"reply": "TEST WORKING: app/bot.py is active 🍷"})
-
-    dish = find_dish(message, rules, synonyms)
-    
     goofy_init = data.get("event")
 
     if goofy_init == "goofy_init":
         reply = (
-            "👋 Ekse, Awe, Goofy here! 🍷 Let’s talk South African food!\n\n"
-            "Choose a plate and I’ll pair it with wine.\n\n"
-            "Try: bobotie, shisa nyama, oxtail potjie, umngqusho, kota, or malva pudding."
+            "👋 Ekse, Awe, Goofy here! 🍷\n\n"
+            "Welcome to your South African Food & Wine Concierge.\n\n"
+            "Choose your food mood:\n"
+            "🍖 Braai Plate\n"
+            "🥘 Traditional Plate\n"
+            "🌽 Eastern Cape Heritage Plate\n"
+            "🍛 Curry Plate\n"
+            "🐟 Seafood Plate\n"
+            "🍮 Dessert Plate\n\n"
+            "Tell me your mood or dish, and I’ll recommend the perfect wine."
         )
 
         whatsapp_link = "https://wa.me/+14155238886?text=START_GOOFY_BOT"
