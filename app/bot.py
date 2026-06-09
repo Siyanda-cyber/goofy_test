@@ -193,11 +193,11 @@ def chat():
             "Choose one dish and I’ll pair it with wine."
         )})
 
-    dish = find_dish(message, rules, synonyms)
+        dish = find_dish(message, rules, synonyms)
 
         if dish:
-        wine = random.choice(rules[dish])
-        story = get_food_story(dish)
+            wine = random.choice(rules[dish])
+            story = get_food_story(dish)
 
         reply = (
             f"{get_intro()}\n\n"
