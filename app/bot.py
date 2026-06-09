@@ -117,7 +117,7 @@ def chat():
     goofy_init = data.get("event")
 
     if message == "hi":
-        return jsonify({"reply": "TEST WORKING: Goofy new chat route is active 🍷"})
+        return jsonify({"reply": "TEST WORKING: app/bot.py is active 🍷"})
 
     dish = find_dish(message, rules, synonyms)
     
