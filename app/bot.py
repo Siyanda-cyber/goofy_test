@@ -16,8 +16,6 @@ RULES_FILE = os.path.join(BASE_DIR, "rules.json")        # wine pairing rules
 SYN_FILE = os.path.join(BASE_DIR, "synonyms.json")      # synonyms file
 LOG_FILE = os.path.join(BASE_DIR, "logs.json")
 STORY_FILE = os.path.join(BASE_DIR, "food_stories.json")
-REASON_FILE = os.path.join(BASE_DIR, "wine_reasons.json")
-wine_reasons = load_json(REASON_FILE)
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR)
 
@@ -47,8 +45,6 @@ def load_json(file_path):
 rules = load_json(RULES_FILE)
 synonyms = load_json(SYN_FILE)
 stories = load_json(STORY_FILE)
-
-REASON_FILE = os.path.join(BASE_DIR, "wine_reasons.json")
 wine_reasons = load_json(REASON_FILE)
 
 def get_food_story(dish):
