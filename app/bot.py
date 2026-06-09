@@ -194,6 +194,10 @@ def chat():
         )})
 
         dish = find_dish(message, rules, synonyms)
+        
+        print("MESSAGE:", message)
+        print("DISH FOUND:", dish)
+        
         if dish:
             wine = random.choice(rules[dish])
             story = get_food_story(dish)
