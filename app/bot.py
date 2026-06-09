@@ -15,6 +15,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "..", "templates")  # templates/ at projec
 RULES_FILE = os.path.join(BASE_DIR, "rules.json")        # wine pairing rules
 SYN_FILE = os.path.join(BASE_DIR, "synonyms.json")      # synonyms file
 LOG_FILE = os.path.join(BASE_DIR, "logs.json")
+STORY_FILE = os.path.join(BASE_DIR, "food_stories.json")
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR)
 
@@ -43,6 +44,7 @@ def load_json(file_path):
 
 rules = load_json(RULES_FILE)
 synonyms = load_json(SYN_FILE)
+stories = load_json(STORY_FILE)
 
 # =====================
 # LOGGING FUNCTION
@@ -93,6 +95,9 @@ def find_dish(message, rules, synonyms):
 # GOOFY PERSONALITY
 # =====================
 def get_intro():
+    def get_food_story(dish):
+    story_data = stories.get(dish, {})
+    return story_data.get("story", "")
     return random.choice([
         "Goofy here! 🍷 Let’s talk South African food!",
         "Ahh my friend! Goofy knows these flavors well 🍷",
@@ -190,22 +195,23 @@ def chat():
     dish = find_dish(message, rules, synonyms)
 
     if dish:
-        wine = random.choice(rules[dish])
+    wine = random.choice(rules[dish])
+    story = get_food_story(dish)
 
-        reply = (
-            f"{get_intro()}\n\n"
-            f"Excellent choice! 🍽️\n\n"
-            f"Today you're looking at **{dish.title()}**.\n\n"
-            f"🍷 Goofy's recommendation:\n"
-            f"👉 {wine}\n\n"
-            f"Why this works:\n"
-            f"This wine complements the flavour profile of the dish and brings out the best of the food experience.\n\n"
-            f"🇿🇦 Local is lekker.\n\n"
-            f"🛎️ Ready to order?\n"
-            f"Raise your hand and call the waiter.\n\n"
-            f"Tell them:\n"
-            f"'I'd like the {dish.title()} with a glass of {wine} please.'"
-        )
+    reply = (
+        f"{get_intro()}\n\n"
+        f"Excellent choice! 🍽️\n\n"
+        f"Today you're looking at **{dish.title()}**.\n\n"
+        f"{story}\n\n"
+        f"🍷 Goofy's recommendation:\n"
+        f"👉 {wine}\n\n"
+        f"Why this works:\n"
+        f"This wine complements the flavour profile of the dish and brings out the best of the food experience.\n\n"
+        f"🛎️ Ready to order?\n"
+        f"Raise your hand and call the waiter.\n\n"
+        f"Tell them:\n"
+        f"'I'd like the {dish.title()} with a glass of {wine} please.'"
+    )
 
         log_interaction(message, reply, "matched")
         return jsonify({"reply": reply})
