@@ -213,7 +213,7 @@ def chat():
     print("DEBUG RULES HAS KOTA:", "kota" in rules)
     print("DEBUG DISH FOUND:", dish)
 
-        if dish:
+    if dish:
         wine = random.choice(rules[dish])
         story = get_food_story(dish)
         reason = get_wine_reason(dish)
