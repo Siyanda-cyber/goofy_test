@@ -24,7 +24,7 @@ app = Flask(__name__, template_folder=TEMPLATE_DIR)
 # =====================
 ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
 AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
-WHATSAPP_NUMBER = os.environ.get("TWILIO_WHATSAPP_NUMBER", "whatsapp:+18049100895")
+WHATSAPP_NUMBER = os.environ.get("TWILIO_WHATSAPP_NUMBER", "whatsapp:+14155238886")
 
 if ACCOUNT_SID and AUTH_TOKEN:
     twilio_client = Client(ACCOUNT_SID, AUTH_TOKEN)
