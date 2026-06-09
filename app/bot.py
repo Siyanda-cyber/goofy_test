@@ -113,8 +113,10 @@ def home():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json
+    
     if message == "hi":
     return jsonify({"reply": "TEST WORKING: Goofy new chat route is active 🍷"})
+    
     goofy_init = data.get("event")
 
     if goofy_init == "goofy_init":
