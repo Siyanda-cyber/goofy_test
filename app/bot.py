@@ -131,51 +131,58 @@ def chat():
             "whatsapp_link": whatsapp_link
         })
 
-    message = data.get("message", "").strip().lower()
-    goofy_init = data.get("event")
-    
+    if message in ["hi", "hello", "hey", "awe", "ekse"]:
+        return jsonify({"reply": (
+            "Aweee 🍷🔥 Goofy here!\n\n"
+            "Welcome to your South African food & wine table assistant.\n\n"
+            "Choose your food mood:\n"
+            "🍖 Braai Plate\n"
+            "🥘 Traditional Plate\n"
+            "🌽 Eastern Cape Heritage Plate\n"
+            "🍛 Curry Plate\n"
+            "🐟 Seafood Plate\n"
+            "🍮 Dessert Plate\n\n"
+            "Tell me what plate you want, then I’ll recommend the wine."
+        )})
+
+    if "traditional" in message:
+        return jsonify({"reply": (
+            "Beautiful choice 🇿🇦\n\n"
+            "For a traditional plate, Goofy recommends:\n\n"
+            "🌽 Umngqusho\n"
+            "🥘 Mogodu\n"
+            "🍖 Shisa Nyama\n"
+            "🐔 Umleqwa\n"
+            "🌽 Samp & Beans\n\n"
+            "Reply with one dish, and I’ll pair it with wine."
+        )})
+
+    if "eastern cape" in message:
+        return jsonify({"reply": (
+            "Eastern Cape heritage plate? Now we’re talking 🇿🇦🔥\n\n"
+            "Goofy recommends:\n\n"
+            "🌽 Umngqusho\n"
+            "🌽 Samp & Beans\n"
+            "🐔 Umleqwa\n"
+            "🥬 Morogo\n\n"
+            "Best first choice: **Umngqusho**.\n\n"
+            "Reply: umngqusho — and I’ll recommend the perfect wine."
+        )})
+
+    if "what food" in message or "menu" in message or "recommend" in message:
+        return jsonify({"reply": (
+            "Awe 🍷🔥 Here’s Goofy’s restaurant test menu:\n\n"
+            "🍖 Braai Plate — boerewors, shisa nyama, pap\n"
+            "🥘 Comfort Plate — oxtail potjie, beef stew, potjiekos\n"
+            "🍛 Curry Plate — bobotie, bunny chow, Durban curry\n"
+            "🌽 Heritage Plate — umngqusho, samp & beans, morogo\n"
+            "🐟 Seafood Plate — snoek, pickled fish\n"
+            "🍮 Dessert Plate — malva pudding, melktert, koeksisters\n\n"
+            "Choose one dish and I’ll pair it with wine."
+        )})
+
     dish = find_dish(message, rules, synonyms)
 
-   if message in ["hi", "hello", "hey", "awe", "ekse"]:
-    return jsonify({"reply": (
-        "Aweee 🍷🔥 Goofy here!\n\n"
-        "Welcome to your South African food & wine table assistant.\n\n"
-        "Choose your food mood:\n"
-        "🍖 Braai Plate\n"
-        "🥘 Traditional Plate\n"
-        "🌽 Eastern Cape Heritage Plate\n"
-        "🍛 Curry Plate\n"
-        "🐟 Seafood Plate\n"
-        "🍮 Dessert Plate\n\n"
-        "Tell me what plate you want, then I’ll recommend the wine."
-    )})
-
-if "traditional" in message:
-    return jsonify({"reply": (
-        "Beautiful choice 🇿🇦\n\n"
-        "For a traditional plate, Goofy recommends:\n\n"
-        "🌽 Umngqusho\n"
-        "🥘 Mogodu\n"
-        "🍖 Shisa Nyama\n"
-        "🐔 Umleqwa\n"
-        "🌽 Samp & Beans\n\n"
-        "Reply with one dish, and I’ll pair it with wine."
-    )})
-
-if "eastern cape" in message:
-    return jsonify({"reply": (
-        "Eastern Cape heritage plate? Now we’re talking 🇿🇦🔥\n\n"
-        "Goofy recommends:\n\n"
-        "🌽 Umngqusho\n"
-        "🌽 Samp & Beans\n"
-        "🐔 Umleqwa\n"
-        "🥬 Morogo\n\n"
-        "Best first choice: **Umngqusho**.\n\n"
-        "Reply: umngqusho — and I’ll recommend the perfect wine."
-    )})
-
-    dish = find_dish(message, rules, synonyms)
-    
     if dish:
         wine = random.choice(rules[dish])
 
@@ -191,7 +198,7 @@ if "eastern cape" in message:
             f"🛎️ Ready to order?\n"
             f"Raise your hand and call the waiter.\n\n"
             f"Tell them:\n"
-           f"'I'd like the {dish.title()} with a glass of {wine} please.'"
+            f"'I'd like the {dish.title()} with a glass of {wine} please.'"
         )
 
         log_interaction(message, reply, "matched")
