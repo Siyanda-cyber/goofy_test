@@ -148,7 +148,7 @@ def chat():
             f"🛎️ Ready to order?\n"
             f"Raise your hand and call the waiter.\n\n"
             f"Tell them:\n"
-            f\"I'd like the {dish.title()} with a glass of {wine} please.\"
+           f"'I'd like the {dish.title()} with a glass of {wine} please.'"
         )
 
         log_interaction(message, reply, "matched")
