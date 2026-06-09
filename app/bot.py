@@ -118,63 +118,61 @@ def chat():
 
     if goofy_init == "goofy_init":
         reply = (
-            "👋 ***Ekse, Awe, Goofy here!***🍷 Let’s talk South African food!\n\n"
-            "You know local is lekker so let Goofy wine and dine you 🍷\n\n"
-            "**📱 Prefer WhatsApp?!** \n\n"
-            "*Well with **Goofy**, you can continue there anytime.*"
-            "\n\n"
+            "👋 Ekse, Awe, Goofy here! 🍷 Let’s talk South African food!\n\n"
+            "Choose a plate and I’ll pair it with wine.\n\n"
+            "Try: bobotie, shisa nyama, oxtail potjie, umngqusho, kota, or malva pudding."
         )
 
-        whatsapp_link = (
-            "https://wa.me/+14155238886"
-            "?text=START_GOOFY_BOT"
-        )
+        whatsapp_link = "https://wa.me/+14155238886?text=START_GOOFY_BOT"
 
         return jsonify({
             "reply": reply,
             "show_qr": True,
             "whatsapp_link": whatsapp_link
         })
+
     dish = find_dish(message, rules, synonyms)
 
     if dish:
         wine = random.choice(rules[dish])
+
         reply = (
-        f"{get_intro()}\n\n"
-        f"Excellent choice! 🍽️\n\n"
-        f"Today you're looking at **{dish.title()}**.\n\n"
-        f"🍷 Goofy's recommendation:\n"
-        f"👉 {wine}\n\n"
-        f"Why this works:\n"
-        f"This wine complements the flavour profile of the dish and helps bring out the best of the food experience.\n\n"
-        f"🇿🇦 Local is lekker.\n\n"
-        f"🛎️ Ready to order?\n"
-        f"Raise your hand and call the waiter.\n\n"
-        f"Tell them:\n"
-        f"'I'd like the {dish.title()} with a glass of {wine} please.'"
-    )
+            f"{get_intro()}\n\n"
+            f"Excellent choice! 🍽️\n\n"
+            f"Today you're looking at **{dish.title()}**.\n\n"
+            f"🍷 Goofy's recommendation:\n"
+            f"👉 {wine}\n\n"
+            f"Why this works:\n"
+            f"This wine complements the flavour profile of the dish and brings out the best of the food experience.\n\n"
+            f"🇿🇦 Local is lekker.\n\n"
+            f"🛎️ Ready to order?\n"
+            f"Raise your hand and call the waiter.\n\n"
+            f"Tell them:\n"
+            f\"I'd like the {dish.title()} with a glass of {wine} please.\"
+        )
+
         log_interaction(message, reply, "matched")
         return jsonify({"reply": reply})
-        
-fallback = (
-    "🍷 Welcome to Goofy Food & Wine Advisor.\n\n"
-    "Please choose a plate:\n\n"
-    "🍖 Braai Plate\n"
-    "🥘 Comfort Plate\n"
-    "🍛 Curry Plate\n"
-    "🌽 Heritage Plate\n"
-    "🐟 Seafood Plate\n"
-    "🍮 Dessert Plate\n\n"
-    "Or tell me a dish such as:\n"
-    "• Bobotie\n"
-    "• Shisa Nyama\n"
-    "• Oxtail Potjie\n"
-    "• Umngqusho\n"
-    "• Bunny Chow\n"
-    "• Malva Pudding\n\n"
-    "I'll recommend the perfect South African wine pairing."
-)
+
+    fallback = (
+        "🍷 Welcome to Goofy Food & Wine Advisor.\n\n"
+        "Please choose a plate:\n\n"
+        "🍖 Braai Plate\n"
+        "🥘 Comfort Plate\n"
+        "🍛 Curry Plate\n"
+        "🌽 Heritage Plate\n"
+        "🐟 Seafood Plate\n"
+        "🍮 Dessert Plate\n\n"
+        "Or tell me a dish such as:\n"
+        "• Bobotie\n"
+        "• Shisa Nyama\n"
+        "• Oxtail Potjie\n"
+        "• Umngqusho\n"
+        "• Bunny Chow\n"
+        "• Malva Pudding\n\n"
+        "I'll recommend the perfect South African wine pairing."
     )
+
     log_interaction(message, fallback, "unknown")
     return jsonify({"reply": fallback})
 
