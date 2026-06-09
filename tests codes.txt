@@ -1,0 +1,9 @@
+
+
+install on commnand prompt window 1
+python -m pip install Flask
+pip install -r requirements.txt
+python -m tests.test_runner
+
+on second command prompt window
+python app\bot.py
