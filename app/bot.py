@@ -228,6 +228,7 @@ def whatsapp_webhook():
             f"👉 {wine} 🍷\n\n"
             f"South African food + wine = magic 🇿🇦"
         )
+        
         log_interaction(in_message, reply, "matched")
     else:
         reply = (
