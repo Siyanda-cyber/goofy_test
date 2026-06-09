@@ -134,19 +134,19 @@ def chat():
     dish = find_dish(message, rules, synonyms)
 
     if "hi" in message or "hello" in message:
-    return jsonify({"reply": welcome_message})
+        return jsonify({"reply": welcome_message})
 
-if "traditional" in message:
-    return jsonify({"reply": traditional_food_message})
+    if "traditional" in message:
+        return jsonify({"reply": traditional_food_message})
 
-if "eastern cape" in message:
-    return jsonify({"reply": eastern_cape_message})
+    if "eastern cape" in message:
+        return jsonify({"reply": eastern_cape_message})
 
-if "recommend" in message:
-    return jsonify({"reply": recommendation_message})
+    if "recommend" in message:
+        return jsonify({"reply": recommendation_message})
 
-if "menu" in message or "food" in message:
-    return jsonify({"reply": menu_message})
+    if "menu" in message or "food" in message:
+        return jsonify({"reply": menu_message})
 
     dish = find_dish(message, rules, synonyms)
     
