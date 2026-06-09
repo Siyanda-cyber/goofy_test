@@ -126,7 +126,7 @@ def chat():
         )
 
         whatsapp_link = (
-            "https://wa.me/+18049100895"
+            "https://wa.me/+14155238886"
             "?text=START_GOOFY_BOT"
         )
 
