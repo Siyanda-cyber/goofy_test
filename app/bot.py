@@ -46,6 +46,10 @@ rules = load_json(RULES_FILE)
 synonyms = load_json(SYN_FILE)
 stories = load_json(STORY_FILE)
 
+def get_food_story(dish):
+    story_data = stories.get(dish, {})
+    return story_data.get("story", "")
+
 # =====================
 # LOGGING FUNCTION
 # =====================
@@ -96,9 +100,9 @@ def find_dish(message, rules, synonyms):
 # =====================
 def get_intro():
     def get_food_story(dish):
-    story_data = stories.get(dish, {})
-    return story_data.get("story", "")
-    return random.choice([
+        story_data = stories.get(dish, {})
+        return story_data.get("story", "")
+        return random.choice([
         "Goofy here! 🍷 Let’s talk South African food!",
         "Ahh my friend! Goofy knows these flavors well 🍷",
         "Now that is a proper South African meal! 🇿🇦",
