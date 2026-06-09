@@ -215,6 +215,8 @@ def chat():
         story = get_food_story(dish)
         reason = get_wine_reason(dish)
 
+        print("WINE REASON:", wine_reasons.get(dish))
+
         reply = (
             f"{get_intro()}\n\n"
             f"Excellent choice! 🍽️\n\n"
