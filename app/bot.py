@@ -213,21 +213,25 @@ def chat():
     print("DEBUG RULES HAS KOTA:", "kota" in rules)
     print("DEBUG DISH FOUND:", dish)
 
-    if dish:
+        if dish:
         wine = random.choice(rules[dish])
         story = get_food_story(dish)
         reason = get_wine_reason(dish)
 
-    reply = (
-        f"{get_intro()}\n\n"
-        f"Excellent choice! 🍽️\n\n"
-        f"Today you're looking at **{dish.title()}**.\n\n"
-        f"{story}\n\n"
-        f"🍷 Goofy's recommendation:\n"
-        f"👉 {wine}\n\n"
-        f"Why this works:\n"
-        f"{reason}\n\n"
-    )
+        reply = (
+            f"{get_intro()}\n\n"
+            f"Excellent choice! 🍽️\n\n"
+            f"Today you're looking at **{dish.title()}**.\n\n"
+            f"{story}\n\n"
+            f"🍷 Goofy's recommendation:\n"
+            f"👉 {wine}\n\n"
+            f"Why this works:\n"
+            f"{reason}\n\n"
+            f"🛎️ Ready to order?\n"
+            f"Raise your hand and call the waiter.\n\n"
+            f"Tell them:\n"
+            f"'I'd like the {dish.title()} with a glass of {wine} please.'"
+        )
 
         log_interaction(message, reply, "matched")
         return jsonify({"reply": reply})
