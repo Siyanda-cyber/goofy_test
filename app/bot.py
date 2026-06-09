@@ -131,22 +131,48 @@ def chat():
             "whatsapp_link": whatsapp_link
         })
 
+    message = data.get("message", "").strip().lower()
+    goofy_init = data.get("event")
+    
     dish = find_dish(message, rules, synonyms)
 
-    if "hi" in message or "hello" in message:
-        return jsonify({"reply": welcome_message})
+   if message in ["hi", "hello", "hey", "awe", "ekse"]:
+    return jsonify({"reply": (
+        "Aweee 🍷🔥 Goofy here!\n\n"
+        "Welcome to your South African food & wine table assistant.\n\n"
+        "Choose your food mood:\n"
+        "🍖 Braai Plate\n"
+        "🥘 Traditional Plate\n"
+        "🌽 Eastern Cape Heritage Plate\n"
+        "🍛 Curry Plate\n"
+        "🐟 Seafood Plate\n"
+        "🍮 Dessert Plate\n\n"
+        "Tell me what plate you want, then I’ll recommend the wine."
+    )})
 
-    if "traditional" in message:
-        return jsonify({"reply": traditional_food_message})
+if "traditional" in message:
+    return jsonify({"reply": (
+        "Beautiful choice 🇿🇦\n\n"
+        "For a traditional plate, Goofy recommends:\n\n"
+        "🌽 Umngqusho\n"
+        "🥘 Mogodu\n"
+        "🍖 Shisa Nyama\n"
+        "🐔 Umleqwa\n"
+        "🌽 Samp & Beans\n\n"
+        "Reply with one dish, and I’ll pair it with wine."
+    )})
 
-    if "eastern cape" in message:
-        return jsonify({"reply": eastern_cape_message})
-
-    if "recommend" in message:
-        return jsonify({"reply": recommendation_message})
-
-    if "menu" in message or "food" in message:
-        return jsonify({"reply": menu_message})
+if "eastern cape" in message:
+    return jsonify({"reply": (
+        "Eastern Cape heritage plate? Now we’re talking 🇿🇦🔥\n\n"
+        "Goofy recommends:\n\n"
+        "🌽 Umngqusho\n"
+        "🌽 Samp & Beans\n"
+        "🐔 Umleqwa\n"
+        "🥬 Morogo\n\n"
+        "Best first choice: **Umngqusho**.\n\n"
+        "Reply: umngqusho — and I’ll recommend the perfect wine."
+    )})
 
     dish = find_dish(message, rules, synonyms)
     
