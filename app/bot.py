@@ -195,8 +195,9 @@ def chat():
 
         dish = find_dish(message, rules, synonyms)
         
-        print("MESSAGE:", message)
-        print("DISH FOUND:", dish)
+        print("DEBUG MESSAGE:", message)
+        print("DEBUG RULES HAS KOTA:", "kota" in rules)
+        print("DEBUG DISH FOUND:", dish)
         
         if dish:
             wine = random.choice(rules[dish])
